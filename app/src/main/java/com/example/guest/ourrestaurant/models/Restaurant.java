@@ -1,4 +1,4 @@
-package com.example.guest.ourrestaurant;
+package com.example.guest.ourrestaurant.models;
 
 import java.util.ArrayList;
 
@@ -13,9 +13,9 @@ public class Restaurant {
     private double mLongitude;
     private ArrayList<String> mCategories = new ArrayList<>();
 
-    public Restaurant(String name, String phone, String website, double rating, String imageUrl,
-                      ArrayList<String> address, double latitude, double longitude,
-                      ArrayList<String> categories) {
+    public Restaurant(String name, String phone, String website,
+                      double rating, String imageUrl, ArrayList<String> address,
+                      double latitude, double longitude, ArrayList<String> categories) {
         this.mName = name;
         this.mPhone = phone;
         this.mWebsite = website;

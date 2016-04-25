@@ -2,10 +2,10 @@ package com.example.guest.ourrestaurant;
 
 import android.support.test.rule.ActivityTestRule;
 
+import com.example.guest.ourrestaurant.ui.MainActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
-
-import dalvik.annotation.TestTargetClass;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
