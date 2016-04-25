@@ -12,7 +12,6 @@ import com.example.guest.ourrestaurant.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = MainActivity.class.getSimpleName();
     @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
