@@ -40,7 +40,7 @@ public class RestaurantsActivity extends AppCompatActivity {
                 try {
                     String jsonData = response.body().string();
                     if (response.isSuccessful()) {
-                        Log.v(TAG, jsonData);
+                        Log.v("JSON DATA", jsonData);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
