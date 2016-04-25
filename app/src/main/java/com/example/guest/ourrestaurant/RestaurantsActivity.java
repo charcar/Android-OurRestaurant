@@ -4,27 +4,32 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
+    public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     public static final String TAG = RestaurantsActivity.class.getSimpleName();
-    private TextView mLocationTextView;
+    @Bind(R.id.listView) ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
-
-        mLocationTextView = (TextView) findViewById(R.id.locationTextView);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
+
         getRestaurants(location);
     }
 
