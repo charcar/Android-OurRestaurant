@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.guest.ourrestaurant.R;
 import com.example.guest.ourrestaurant.adapters.RestaurantListAdapter;
@@ -23,11 +20,11 @@ import okhttp3.Call;
 import okhttp3.Response;
 import okhttp3.Callback;
 
-public class RestaurantsActivity extends AppCompatActivity {
+public class RestaurantListActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private RestaurantListAdapter mAdapter;
     public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
-    public static final String TAG = RestaurantsActivity.class.getSimpleName();
+    public static final String TAG = RestaurantListActivity.class.getSimpleName();
 
 
     @Override
@@ -55,13 +52,13 @@ public class RestaurantsActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 mRestaurants = yelpService.processResults(response);
 
-                RestaurantsActivity.this.runOnUiThread(new Runnable() {
+                RestaurantListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mAdapter = new RestaurantListAdapter(getApplicationContext(), mRestaurants);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(RestaurantsActivity.this);
+                                new LinearLayoutManager(RestaurantListActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }
