@@ -9,9 +9,6 @@ import com.example.guest.ourrestaurant.ui.RestaurantDetailFragment;
 
 import java.util.ArrayList;
 
-/**
- * Created by Guest on 4/26/16.
- */
 public class RestaurantPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Restaurant> mRestaurants;
 
