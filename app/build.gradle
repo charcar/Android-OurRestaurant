@@ -13,6 +13,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/notice.txt'
+    }
+
     buildTypes {
         debug {
             debuggable true;
@@ -23,6 +37,7 @@ android {
         }
     }
     buildTypes.each {
+        it.buildConfigField 'String', 'FIREBASE_ROOT_URL', FirebaseRootUrl
         it.buildConfigField 'String', 'YELP_CONSUMER_KEY', YelpConsumerKey
         it.buildConfigField 'String', 'YELP_CONSUMER_SECRET', YelpConsumerSecret
         it.buildConfigField 'String', 'YELP_TOKEN', YelpToken
@@ -57,4 +72,5 @@ dependencies {
     compile 'com.android.support:support-v4:23.2.1'
     compile 'org.parceler:parceler-api:1.1.1'
     apt 'org.parceler:parceler:1.1.1'
+    compile 'com.firebase:firebase-client-android:2.3.1'
 }
