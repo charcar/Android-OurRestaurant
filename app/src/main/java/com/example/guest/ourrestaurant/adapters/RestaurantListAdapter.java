@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder> {
+public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantViewHolder> {
     private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     private Context mContext;
 
@@ -31,14 +31,14 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     }
 
     @Override
-    public RestaurantListAdapter.RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item, parent, false);
-        RestaurantViewHolder viewHolder = new RestaurantViewHolder(view);
+        RestaurantViewHolder viewHolder = new RestaurantViewHolder(view, mRestaurants);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RestaurantListAdapter.RestaurantViewHolder holder, int position) {
+    public void onBindViewHolder(RestaurantViewHolder holder, int position) {
         holder.bindRestaurant(mRestaurants.get(position));
     }
 
@@ -47,34 +47,5 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         return mRestaurants.size();
     }
 
-    public class RestaurantViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.restaurantImageView) ImageView mRestaurantImageView;
-        @Bind(R.id.restaurantNameTextView) TextView mNameTextView;
-        @Bind(R.id.categoryTextView) TextView mCategoryTextView;
-        @Bind(R.id.ratingTextView) TextView mRatingTextView;
-        private Context mContext;
 
-        public RestaurantViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-            mContext = itemView.getContext();
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int itemPosition = getLayoutPosition();
-                    Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
-                    intent.putExtra("position", itemPosition + "");
-                    intent.putExtra("restaurants", Parcels.wrap(mRestaurants));
-                    mContext.startActivity(intent);
-                }
-            });
-        }
-
-        public void bindRestaurant(Restaurant restaurant) {
-            Picasso.with(mContext).load(restaurant.getImageUrl()).into(mRestaurantImageView);
-            mNameTextView.setText(restaurant.getName());
-            mCategoryTextView.setText(restaurant.getCategories().get(0));
-            mRatingTextView.setText("Rating: " + restaurant.getRating() + "/5");
-        }
-    }
 }
