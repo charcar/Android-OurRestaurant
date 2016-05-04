@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v == mFindRestaurantsButton) {
             String location = mLocationEditText.getText().toString();
-            saveLocationToFirebase(location);
             Intent intent = new Intent(MainActivity.this, RestaurantListActivity.class);
             intent.putExtra("location", location);
             startActivity(intent);
@@ -84,10 +83,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, SavedRestaurantListActivity.class);
             startActivity(intent);
         }
-    }
-
-    public void saveLocationToFirebase(String location) {
-        Firebase searchedLocationRef = new Firebase(Constants.FIREBASE_URL_SEARCHED_LOCATION);
-        searchedLocationRef.push().setValue(location);
     }
 }
